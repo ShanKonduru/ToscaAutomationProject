@@ -78,11 +78,14 @@ namespace tricentis.qtest.demowebshop.test
         public void TestUserLoginScenario()
         {
             var homePage = new HomePage(_driver); 
-
+            string userEmail = "UserOne@UserOne.com";
             homePage.ClickLoginLink();
-            homePage.EnterUserName("UserOne@UserOne.com");
+            homePage.EnterUserName(userEmail);
             homePage.EnterPassword("UserOne");
             homePage.ClickLoginButton();
+            bool userEmailDisplayed = homePage.IsUserEmailDisplayed("UserOne@UserOne.com");
+            Assert.IsTrue(userEmailDisplayed, $"User email '{userEmail}' is not displayed on the home page.");
+            homePage.ClickLogoutLink();
         }
 
 

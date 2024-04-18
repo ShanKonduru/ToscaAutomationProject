@@ -26,7 +26,9 @@ namespace tricentis.qtest.demowebshop
         public IWebElement RegisterLink => _driver.FindElement(By.CssSelector("a[href='/register'].ico-register"));
         public IWebElement LoginLink => _driver.FindElement(By.CssSelector("a[href='/login'].ico-login"));
         public IWebElement ShoppingCartCount => _driver.FindElement(By.CssSelector("div.mini-shopping-cart > div.count"));
-        public IWebElement WishlistLabel =>_driver.FindElement(By.CssSelector("span.cart-label"));
+        public IWebElement WishlistLabel => _driver.FindElement(By.CssSelector("span.cart-label"));
+        public IWebElement UserEmailLink => _driver.FindElement(By.CssSelector("a.account"));
+        public IWebElement LogoutLink => _driver.FindElement(By.CssSelector("a[href='/logout'].ico-logout"));
 
         public void EnterUserName(string email)
         {
@@ -72,6 +74,12 @@ namespace tricentis.qtest.demowebshop
             LoginButton.Click();
         }
 
+        public void ClickLogoutLink()
+        {
+            LogoutLink.Click();
+        }
+
+
         public void ClickRegisterLink()
         {
             RegisterLink.Click();
@@ -90,6 +98,11 @@ namespace tricentis.qtest.demowebshop
         public void ClickWishlist()
         {
             WishlistLabel.Click();
+        }
+
+        public bool IsUserEmailDisplayed(string userEmail)
+        {
+            return UserEmailLink.Text.Trim().Equals(userEmail);
         }
     }
 }
