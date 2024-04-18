@@ -17,28 +17,79 @@ namespace tricentis.qtest.demowebshop
         {
         }
 
+        public IWebElement UserNameInput => _driver.FindElement(By.Id("Email"));
+        public IWebElement PasswordInput => _driver.FindElement(By.Id("Password"));
+        public IWebElement EmailValidationMessage => _driver.FindElement(By.CssSelector("span.field-validation-valid[data-valmsg-for='Email']"));
+        public IWebElement RememberMeCheckbox => _driver.FindElement(By.Id("RememberMe"));
+        public IWebElement ForgotPasswordLink => _driver.FindElement(By.CssSelector("a[href='/passwordrecovery']"));
+        public IWebElement LoginButton => _driver.FindElement(By.CssSelector("input.button-1.login-button"));
+        public IWebElement RegisterLink => _driver.FindElement(By.CssSelector("a[href='/register'].ico-register"));
+        public IWebElement LoginLink => _driver.FindElement(By.CssSelector("a[href='/login'].ico-login"));
+        public IWebElement ShoppingCartCount => _driver.FindElement(By.CssSelector("div.mini-shopping-cart > div.count"));
+        public IWebElement WishlistLabel =>_driver.FindElement(By.CssSelector("span.cart-label"));
+
+        public void EnterUserName(string email)
+        {
+            UserNameInput.Clear();
+            UserNameInput.SendKeys(email);
+        }
+
+        public void EnterPassword(string password)
+        {
+            PasswordInput.Clear();
+            PasswordInput.SendKeys(password);
+        }
+
+
+        public string GetEmailValidationMessage()
+        {
+            return EmailValidationMessage.Text.Trim();
+        }
+
+        public void CheckRememberMe()
+        {
+            if (!RememberMeCheckbox.Selected)
+            {
+                RememberMeCheckbox.Click();
+            }
+        }
+
+        public void UncheckRememberMe()
+        {
+            if (RememberMeCheckbox.Selected)
+            {
+                RememberMeCheckbox.Click();
+            }
+        }
+
+        public void ClickForgotPasswordLink()
+        {
+            ForgotPasswordLink.Click();
+        }
+
+        public void ClickLoginButton()
+        {
+            LoginButton.Click();
+        }
+
         public void ClickRegisterLink()
         {
-            var registerLink = FindElement(By.CssSelector("a[href='/register'].ico-register"));
-            registerLink.Click();
+            RegisterLink.Click();
         }
 
         public void ClickLoginLink()
         {
-            var loginLink = FindElement(By.CssSelector("a[href='/login'].ico-login"));
-            loginLink.Click();
+            LoginLink.Click();
         }
 
         public string GetShoppingCartItemCount()
         {
-            var shoppingCartCount = FindElement(By.CssSelector("div.mini-shopping-cart > div.count"));
-            return shoppingCartCount.Text.Trim();
+            return ShoppingCartCount.Text.Trim();
         }
 
         public void ClickWishlist()
         {
-            var wishlistLabel = FindElement(By.CssSelector("span.cart-label"));
-            wishlistLabel.Click();
+            WishlistLabel.Click();
         }
     }
 }

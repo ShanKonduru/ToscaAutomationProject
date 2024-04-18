@@ -74,6 +74,18 @@ namespace tricentis.qtest.demowebshop.test
             Assert.IsTrue(registerPage.IsErrorMessageDisplayed("The specified email already exists"), "Error message not displayed, meaning this user is not existing in the system.");
         }
 
+            [TestMethod]
+        public void TestUserLoginScenario()
+        {
+            var homePage = new HomePage(_driver); 
+
+            homePage.ClickLoginLink();
+            homePage.EnterUserName("UserOne@UserOne.com");
+            homePage.EnterPassword("UserOne");
+            homePage.ClickLoginButton();
+        }
+
+
         [TestCleanup]
         public void TestCleanup()
         {
