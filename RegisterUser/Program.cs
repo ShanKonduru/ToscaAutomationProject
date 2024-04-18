@@ -15,10 +15,10 @@ using Newtonsoft.Json;
 // Website: https://www.tricentis.com
 // C# plugin version: 1.3.4
 */
-namespace MyNamespace1
+namespace tricentis.qtest.demowebshop
 {
     [TestClass]
-    public class MyTestCase1
+    public class RegisterUser
     {
         private IWebDriver _driver;
         private const int MOUSE_LEFT = 0;
@@ -35,7 +35,7 @@ namespace MyNamespace1
         }
 
         [TestMethod]
-        public void Test()
+        public void TestRegisterUser()
         {
             Click(null, By.XPath("html/body/div[4]/div[1]/div[4]/div[2]/div/div[2]/div[1]/div[1]/div[3]/input"), MOUSE_LEFT, 1);
             Click(null, By.Id("gender-male"), MOUSE_LEFT, 3);
