@@ -12,20 +12,10 @@ using Newtonsoft.Json;
 
 namespace tricentis.qtest.demowebshop
 {
-    public class RegisterPage
+    public class RegisterPage : BasePage
     {
-        private readonly IWebDriver _driver;
-        private readonly WebDriverWait _wait;
-
-        public RegisterPage(IWebDriver driver)
+        public RegisterPage(IWebDriver driver) : base(driver)
         {
-            _driver = driver;
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-        }
-
-        private IWebElement FindElement(By locator)
-        {
-            return _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
         }
 
         public void ClickRegisterLink()
@@ -87,7 +77,6 @@ namespace tricentis.qtest.demowebshop
             continueButton.Click();
         }
 
-
         public bool IsErrorMessageDisplayed(string errorMessage)
         {
             try
@@ -102,4 +91,3 @@ namespace tricentis.qtest.demowebshop
         }
     }
 }
-
