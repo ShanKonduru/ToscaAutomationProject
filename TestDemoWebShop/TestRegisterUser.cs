@@ -84,14 +84,14 @@ namespace tricentis.qtest.demowebshop.test
                 testCase.TestSteps.Add(new TestStep(teststep++, "Click Continue Buttun", "Passed"));
 
                 var milliseconds = TimeTracker.Stop(testcaseName);
-                testCase.AddTestStatus("Pass");
-                testCase.AddTestExecutionTime(TimeTracker.GetElapsedTime(milliseconds));
+                testCase.Status = "Pass";
+                testCase.ExecutionTime = TimeTracker.GetElapsedTime(milliseconds);
 
                 _executionReport.AddTestCase(testCase);
             }
             catch (Exception ex)
             {
-                testCase.AddTestStatus(string.Format("Failed, Reason: {0} Inner Exception: {1}", ex.Message, ex.InnerException?.Message ?? "None"));
+                testCase.Status = (string.Format("Failed, Reason: {0} Inner Exception: {1}", ex.Message, ex.InnerException?.Message ?? "None"));
             }
         }
 
@@ -137,14 +137,14 @@ namespace tricentis.qtest.demowebshop.test
                 testCase.TestSteps.Add(new TestStep(teststep++, "Validate The specified email already existsss", "Passed"));
 
                 var milliseconds = TimeTracker.Stop(testcaseName);
-                testCase.AddTestStatus("Pass");
-                testCase.AddTestExecutionTime(TimeTracker.GetElapsedTime(milliseconds));
+                testCase.Status = "Pass";
+                testCase.ExecutionTime = TimeTracker.GetElapsedTime(milliseconds);
 
                 _executionReport.AddTestCase(testCase);
             }
             catch (Exception ex)
             {
-                testCase.AddTestStatus(string.Format("Failed, Reason: {0} Inner Exception: {1}", ex.Message, ex.InnerException?.Message ?? "None"));
+                testCase.Status = string.Format("Failed, Reason: {0} Inner Exception: {1}", ex.Message, ex.InnerException?.Message ?? "None");
             }
         }
 
@@ -189,14 +189,14 @@ namespace tricentis.qtest.demowebshop.test
 
 
                 var milliseconds = TimeTracker.Stop(testcaseName);
-                testCase.AddTestStatus("Pass");
-                testCase.AddTestExecutionTime(TimeTracker.GetElapsedTime(milliseconds));
+                testCase.Status = "Pass";
+                testCase.ExecutionTime = TimeTracker.GetElapsedTime(milliseconds);
 
                 _executionReport.AddTestCase(testCase);
             }
             catch (Exception ex)
             {
-                testCase.AddTestStatus(string.Format("Failed, Reason: {0} Inner Exception: {1}", ex.Message, ex.InnerException?.Message ?? "None"));
+                testCase.Status = string.Format("Failed, Reason: {0} Inner Exception: {1}", ex.Message, ex.InnerException?.Message ?? "None");
             }
         }
 
@@ -233,7 +233,6 @@ namespace tricentis.qtest.demowebshop.test
                 // Generate and save report
                 string htmlReport = _executionReport.GenerateReport();
                 File.WriteAllText(ReportFilePath, htmlReport);
-
             }
         }
     }
