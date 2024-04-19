@@ -13,4 +13,7 @@
     <PackageReference Include="SeleniumExtras.WaitHelpers" Version="1.0.2" />
     <PackageReference Include="Selenium.Support" Version="4.19.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebAutomationFramework\WebAutomationFramework.csproj" />
+  </ItemGroup>
 </Project>

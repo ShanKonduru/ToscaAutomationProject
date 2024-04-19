@@ -9,6 +9,7 @@ using System.Linq;
 using OpenQA.Selenium.Chrome;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Shan.WebAutomationFramework;
 
 namespace tricentis.qtest.demowebshop
 {

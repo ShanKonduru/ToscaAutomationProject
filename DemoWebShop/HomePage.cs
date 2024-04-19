@@ -8,6 +8,7 @@ using System.Linq;
 using OpenQA.Selenium.Chrome;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Shan.WebAutomationFramework;
 
 namespace tricentis.qtest.demowebshop
 {
@@ -16,7 +17,7 @@ namespace tricentis.qtest.demowebshop
         public HomePage(IWebDriver driver) : base(driver)
         {
         }
-
+        
         public IWebElement UserNameInput => _driver.FindElement(By.Id("Email"));
         public IWebElement PasswordInput => _driver.FindElement(By.Id("Password"));
         public IWebElement EmailValidationMessage => _driver.FindElement(By.CssSelector("span.field-validation-valid[data-valmsg-for='Email']"));

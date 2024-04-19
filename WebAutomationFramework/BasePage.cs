@@ -1,16 +1,8 @@
-
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Interactions;
-using System.Diagnostics;
-using System.Linq;
-using OpenQA.Selenium.Chrome;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 
-namespace tricentis.qtest.demowebshop
+namespace Shan.WebAutomationFramework
 {
     public class BasePage
     {
@@ -29,4 +21,3 @@ namespace tricentis.qtest.demowebshop
         }
     }
 }
-
