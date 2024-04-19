@@ -23,7 +23,7 @@ namespace tricentis.qtest.demowebshop.test
         private int testCaseId = 1;
 
         private static TestExecutionReport _executionReport = new TestExecutionReport();
-        private static string ReportFilePath = String.Format("C:/MyProjects/TestAutomationReport-{0}.html", DateTime.Now.ToString("yyyyMMddhhmmss"));
+        private static string ReportFilePath = String.Format($"{Consts.ExecutionReportBasePath}/TestAutomationReport-{DateTime.Now.ToString("yyyyMMddhhmmss")}.html");
         public TestContext? TestContext { get; set; }  // Declare TestContext as nullable
 
         [TestInitialize]
