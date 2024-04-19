@@ -38,7 +38,7 @@ namespace tricentis.qtest.demowebshop.test
         [TestMethod]
         public void TestRegisterNewUserScenario()
         {
-            var testcaseName = TestContext!.TestName;
+            var testcaseName = TestContext.TestName;
             var testCase = new TestCase(testCaseId++, testcaseName);
 
             try
@@ -57,34 +57,34 @@ namespace tricentis.qtest.demowebshop.test
 
                 var teststep = 1;
                 homePage.ClickRegisterLink();
-                testCase.TestSteps.Add(new TestStep(teststep++, "click Register Link", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "click Register Link", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.SelectGender("male");
-                testCase.TestSteps.Add(new TestStep(teststep++, "click SelectGender", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "click SelectGender", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.EnterFirstName(firstName);
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter First Name", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter First Name", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.EnterLastName(lastName);
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Last Name", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Last Name", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.EnterEmail(email);
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Email ID", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Email ID", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.EnterPassword(password);
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Password", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Password", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.ConfirmPassword(password);
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Confirm Password", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Confirm Password", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.ClickRegisterButton();
-                testCase.TestSteps.Add(new TestStep(teststep++, "Click Register Buttun", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Click Register Button", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.ClickContinueButton();
-                testCase.TestSteps.Add(new TestStep(teststep++, "Click Continue Buttun", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Click Continue Button", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 var milliseconds = TimeTracker.Stop(testcaseName);
-                testCase.Status = "Pass";
+                testCase.Status = "Passed";
                 testCase.ExecutionTime = TimeTracker.GetElapsedTime(milliseconds);
 
                 _executionReport.AddTestCase(testCase);
@@ -98,7 +98,7 @@ namespace tricentis.qtest.demowebshop.test
         [TestMethod]
         public void TestRegisterExistingUserScenario()
         {
-            var testcaseName = TestContext!.TestName;
+            var testcaseName = TestContext.TestName;
             var testCase = new TestCase(testCaseId++, testcaseName);
 
             try
@@ -110,34 +110,44 @@ namespace tricentis.qtest.demowebshop.test
 
                 var teststep = 1;
                 homePage.ClickRegisterLink();
-                testCase.TestSteps.Add(new TestStep(teststep++, "click Register Link", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "click Register Link", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.SelectGender("male");
-                testCase.TestSteps.Add(new TestStep(teststep++, "click Gender Male", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "click Gender Male", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.EnterFirstName("User");
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter First Name", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter First Name", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.EnterLastName("One");
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Last Name", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Last Name", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.EnterEmail("UserOne@UserOne.com");
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Email ID", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Email ID", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.EnterPassword("UserOne");
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Password", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Password", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.ConfirmPassword("UserOne");
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Confirm Password", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Confirm Password", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 registerPage.ClickRegisterButton();
-                testCase.TestSteps.Add(new TestStep(teststep++, "Click Register Button", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Click Register Button", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
-                Assert.IsTrue(registerPage.IsErrorMessageDisplayed("The specified email already exists"), "Error message not displayed, meaning this user is not existing in the system.");
-                testCase.TestSteps.Add(new TestStep(teststep++, "Validate The specified email already existsss", "Passed"));
+                bool IsErrorMessageDisplayed = registerPage.IsErrorMessageDisplayed("The specified email already exists"); 
+                Assert.IsTrue(IsErrorMessageDisplayed, "Error message not displayed, meaning this user is not existing in the system.");
+                testCase.TestSteps.Add(new TestStep(teststep++, "Validate The specified email already existsss", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
+
+                if (IsErrorMessageDisplayed)
+                {
+                    testCase.TestSteps.Add(new TestStep(teststep++, "Validate The specified email already existsss", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
+                }
+                else
+                {
+                    testCase.TestSteps.Add(new TestStep(teststep++, "Error message not displayed, meaning this user is not existing in the system.", "Failed", Utility.CaptureScreenshot(_driver, testcaseName)));
+                }
 
                 var milliseconds = TimeTracker.Stop(testcaseName);
-                testCase.Status = "Pass";
+                testCase.Status = "Passed";
                 testCase.ExecutionTime = TimeTracker.GetElapsedTime(milliseconds);
 
                 _executionReport.AddTestCase(testCase);
@@ -151,7 +161,7 @@ namespace tricentis.qtest.demowebshop.test
         [TestMethod]
         public void TestUserLoginScenario()
         {
-            var testcaseName = TestContext!.TestName;
+            var testcaseName = TestContext.TestName;
             var testCase = new TestCase(testCaseId++, testcaseName);
 
             try
@@ -162,34 +172,34 @@ namespace tricentis.qtest.demowebshop.test
                 string userEmail = "UserOne@UserOne.com";
                 var teststep = 1;
                 homePage.ClickLoginLink();
-                testCase.TestSteps.Add(new TestStep(teststep++, "click Login Link", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "click Login Link", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 homePage.EnterUserName(userEmail);
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter User Name", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter User Name", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 homePage.EnterPassword("UserOne");
-                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Password", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Enter Password", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 homePage.ClickLoginButton();
-                testCase.TestSteps.Add(new TestStep(teststep++, "Click Log in Button", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Click Log in Button", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
                 bool userEmailDisplayed = homePage.IsUserEmailDisplayed("UserOne@UserOne.com");
                 Assert.IsTrue(userEmailDisplayed, $"User email '{userEmail}' is not displayed on the home page.");
                 if (userEmailDisplayed)
                 {
-                    testCase.TestSteps.Add(new TestStep(teststep++, "Click Log in Button", "Passed"));
+                    testCase.TestSteps.Add(new TestStep(teststep++, "Click Log in Button", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
                 }
                 else
                 {
-                    testCase.TestSteps.Add(new TestStep(teststep++, "Click Log in Button", "Failed"));
+                    testCase.TestSteps.Add(new TestStep(teststep++, "Click Log in Button", "Failed", Utility.CaptureScreenshot(_driver, testcaseName)));
                 }
 
                 homePage.ClickLogoutLink();
-                testCase.TestSteps.Add(new TestStep(teststep++, "Click Logout Lick", "Passed"));
+                testCase.TestSteps.Add(new TestStep(teststep++, "Click Logout Lick", "Passed", Utility.CaptureScreenshot(_driver, testcaseName)));
 
 
                 var milliseconds = TimeTracker.Stop(testcaseName);
-                testCase.Status = "Pass";
+                testCase.Status = "Passed";
                 testCase.ExecutionTime = TimeTracker.GetElapsedTime(milliseconds);
 
                 _executionReport.AddTestCase(testCase);
@@ -211,7 +221,7 @@ namespace tricentis.qtest.demowebshop.test
                 var screenshot = ((ITakesScreenshot)_driver).GetScreenshot();
 
                 // Define the screenshot file path
-                string fileNameBase = $"{TestContext!.TestName}_{DateTime.Now:yyyyMMddHHmmss}";
+                string fileNameBase = $"{TestContext.TestName}_{DateTime.Now:yyyyMMddHHmmss}";
                 string directoryPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\Screenshots";
                 Directory.CreateDirectory(directoryPath);  // Create directory if it doesn't exist
                 filePath = $"{directoryPath}\\{fileNameBase}.jpeg";

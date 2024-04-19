@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 
 namespace Shan.WebAutomationFramework
@@ -25,6 +26,7 @@ namespace Shan.WebAutomationFramework
             htmlContent.Append("table {width: 100%; border-collapse: collapse;}");
             htmlContent.Append("th, td {border: 1px solid black; padding: 8px; text-align: left;}");
             htmlContent.Append("th {background-color: #f2f2f2;}");
+            htmlContent.Append("img {max-width: 200px;}");
             htmlContent.Append("</style>");
             htmlContent.Append("</head>");
             htmlContent.Append("<body>");
@@ -47,11 +49,24 @@ namespace Shan.WebAutomationFramework
                 htmlContent.Append($"<h2 id=\"{testCase.Id}\">{testCase.Name} - {testCase.Status}</h2>");
                 htmlContent.Append("<h3>Test Steps</h3>");
                 htmlContent.Append("<table>");
-                htmlContent.Append("<tr><th>Step Name</th><th>Status</th></tr>");
+                htmlContent.Append("<tr><th>Step Name</th><th>Status</th><th>Screenshot</th></tr>");
 
                 foreach (var testStep in testCase.TestSteps)
                 {
-                    htmlContent.Append($"<tr><td>{testStep.Name}</td><td>{testStep.Status}</td></tr>");
+                    htmlContent.Append("<tr>");
+                    htmlContent.Append($"<td>{testStep.Name}</td>");
+                    htmlContent.Append($"<td>{testStep.Status}</td>");
+
+                    if (!string.IsNullOrEmpty(testStep.ScreenshotPath))
+                    {
+                        htmlContent.Append($"<td><a href=\"{testStep.ScreenshotPath}\" target=\"_blank\"><img src=\"{testStep.ScreenshotPath}\" alt=\"Screenshot\"/></a></td>");
+                    }
+                    else
+                    {
+                        htmlContent.Append("<td>No screenshot</td>");
+                    }
+
+                    htmlContent.Append("</tr>");
                 }
 
                 htmlContent.Append("</table>");
